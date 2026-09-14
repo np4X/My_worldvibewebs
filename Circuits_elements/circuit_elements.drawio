@@ -1,0 +1,37 @@
+<mxfile host="app.diagrams.net" modified="2026-09-14T00:00:00.000Z" agent="Claude Code" version="24.0.0" type="device">
+  <diagram name="Circuit Elements" id="circuit-elements-1">
+    <mxGraphModel dx="800" dy="600" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="Circuit Elements" style="text;html=1;align=center;verticalAlign=middle;fontSize=20;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="300" y="20" width="240" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="resistor" value="Resistor" style="shape=resistor;html=1;points=[];perimeter=orthogonalPerimeter;" vertex="1" parent="1">
+          <mxGeometry x="80" y="100" width="80" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="capacitor" value="Capacitor" style="shape=mxgraph.electrical.capacitors.capacitor_1;html=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="180" width="60" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="inductor" value="Inductor" style="shape=mxgraph.electrical.inductors.inductor_2;html=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="260" width="80" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="battery" value="Battery" style="shape=mxgraph.electrical.electrical_symbols.battery_cell_2;html=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="340" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="diode" value="Diode" style="shape=mxgraph.electrical.diodes.diode;html=1;" vertex="1" parent="1">
+          <mxGeometry x="300" y="100" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="switch" value="Switch" style="shape=mxgraph.electrical.switches.switch_1;html=1;" vertex="1" parent="1">
+          <mxGeometry x="300" y="180" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ground" value="Ground" style="shape=mxgraph.electrical.signal_sources.earth_ground;html=1;" vertex="1" parent="1">
+          <mxGeometry x="300" y="260" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="led" value="LED" style="shape=mxgraph.electrical.electrical_symbols.led_2;html=1;" vertex="1" parent="1">
+          <mxGeometry x="300" y="340" width="40" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
