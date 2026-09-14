@@ -89,6 +89,7 @@
   .work-card h3 { margin-bottom: var(--space-1); }
   .work-card p { margin: 0; font-size: 13px; color: var(--color-neutral-600); }
   .work-quote { margin: var(--space-2) 0 0; font-size: 12px; font-style: italic; color: var(--color-accent-2-700); }
+  .work-why { margin: var(--space-2) 0 0; font-size: 12px; color: var(--color-accent-700); }
 
   .timeline-row {
     display: grid; grid-template-columns: 120px 1fr; gap: var(--space-4);
@@ -137,6 +138,7 @@
   </div>
   <div>
     <p>I build things by having a conversation, not by grinding through documentation. A little prompt, a follow-up, a nudge in the right direction — and a working site comes out the other end.</p>
+    <p>Underneath the tool, it's a plain skill: turning a vague ask into a precise one, then iterating with a collaborator until it's right. That's communication and problem-solving — the same skill client-facing engineering work runs on, just aimed at a different collaborator.</p>
     <p>No framework loyalty, no "real developer" gatekeeping. Just me, an AI, and enough curiosity to keep iterating until it feels right.</p>
     <p>I mostly vibe in the languages I already have some footing in — LaTeX, Python, a little Arduino. Enough to know what's going on, AI fills in the rest.</p>
     <p>My rule: ship the vibe first, figure out what broke after. Every bug is just the next thing I learn — I'm not pretending to have it all figured out, I'm figuring it out in public.</p>
@@ -163,6 +165,16 @@
   <h6>Skills</h6>
   <h2 style="margin-bottom:var(--space-6)">What I vibe with</h2>
   <div class="card-grid">
+    <div class="card">
+      <div class="card-tags"><span class="tag tag-small tag-outline">Soft skill</span></div>
+      <h4>Requirements Translation</h4>
+      <p>Turning a vague business ask into a precise, buildable spec.</p>
+    </div>
+    <div class="card">
+      <div class="card-tags"><span class="tag tag-small tag-outline">Soft skill</span></div>
+      <h4>Client Communication</h4>
+      <p>Explaining technical tradeoffs in plain terms, and asking the right follow-up.</p>
+    </div>
     <div class="card">
       <div class="card-tags"><span class="tag tag-small tag-outline">Vibe-coded</span></div>
       <h4>Prompt Engineering</h4>
@@ -227,25 +239,43 @@
   <h2 style="margin-bottom:var(--space-6)">Vibe-coded &amp; hand-built</h2>
   <div class="work-grid">
     <div class="work-card">
-      <span class="tag tag-outline">Vibe-coded</span>
+      <span class="tag tag-outline">Current — Senior Project</span>
       <div>
-        <h3>Untitled project</h3>
-        <p>A vibe-coded build lands here soon.</p>
-        <p class="work-quote">Vibe first, learn to fix later.</p>
+        <h3>Unbalanced-Load Three-Phase Optimal Power Dispatch for Microgrids</h3>
+        <p>A Second-Order Cone Programming approach with Nonlinear Model Predictive Control for optimal active and reactive power dispatch under unbalanced three-phase loads.</p>
+        <p class="work-why"><strong>Why it matters:</strong> Keeps microgrids balanced and efficient even when loads are uneven — cutting losses and equipment strain without a full grid rebuild.</p>
       </div>
     </div>
     <div class="work-card">
-      <span class="tag tag-outline">Hand-built</span>
+      <span class="tag tag-outline">Chulalongkorn University</span>
+      <div>
+        <h3>Statistical Analysis of Global Fuel Usage in Power Sector</h3>
+        <p>Statistical modeling of global power-sector fuel consumption trends.</p>
+        <p class="work-why"><strong>Why it matters:</strong> Gives energy planners a clearer read on where fuel demand is shifting, so investment gets aimed at what actually needs it.</p>
+      </div>
+    </div>
+    <div class="work-card">
+      <span class="tag tag-outline">Chulalongkorn University</span>
+      <div>
+        <h3>TCAS Admission Prediction (Big Data Course)</h3>
+        <p>K-means clustering model to predict TCAS university admission outcomes.</p>
+        <p class="work-why"><strong>Why it matters:</strong> Helps students gauge their odds before committing to a round, cutting some of the guesswork out of Thailand's highest-stakes annual process.</p>
+      </div>
+    </div>
+    <div class="work-card">
+      <span class="tag tag-outline">KMUTNB</span>
       <div>
         <h3>Agricultural Moisture Mapping Robot</h3>
         <p>Arduino-based robot for precision agriculture — sensor integration and embedded control.</p>
+        <p class="work-why"><strong>Why it matters:</strong> Gives small farms a low-cost way to catch under- or over-watering before it costs a harvest.</p>
       </div>
     </div>
     <div class="work-card">
-      <span class="tag tag-outline">Hand-built</span>
+      <span class="tag tag-outline">KMUTNB</span>
       <div>
         <h3>Dual-Mode Competition Robot</h3>
         <p>Built with both automated sensing and remote control for in-class competition.</p>
+        <p class="work-why"><strong>Why it matters:</strong> Proved out the same automated-plus-manual-fallback redundancy real industrial control systems rely on when automation alone can't be trusted.</p>
       </div>
     </div>
   </div>
