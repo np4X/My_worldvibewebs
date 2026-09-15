@@ -100,6 +100,9 @@ suppressing the switching-frequency content.
     \draw (1.05,3) -- (1.8,3.25);
     \draw (2,3) circle(0.05);
     \node[above] at (1.5,3.2) {$D$};
+    \draw (2,2.3) circle(0.05);
+    \node[right] at (2.1,2.3) {$1{-}D$};
+    \draw (2,2.25) -- (2,0);
     \draw (2,3) -- (2.7,3) to[L, l=$L$] (4.2,3) -- (5.5,3);
     \draw (5.5,3) to[C, l_=$C$] (5.5,0);
     \draw (5.5,3) -- (7,3) to[R, l_=$R$] (7,0);
@@ -185,6 +188,9 @@ At $t=0^+$: $i_L = 5\,\text{A}$, $i_O = 0$, $i_C = i_L - i_O = 5\,\text{A}$.
     \draw (0,0) to[V, invert, l=$50\,\mathrm{V}$] (0,3) -- (1,3);
     \draw (1,3) circle(0.05) -- (2,3) circle(0.05);
     \node[above] at (1.5,3.15) {$D$ (closed)};
+    \draw (2,2.3) circle(0.05);
+    \node[right] at (2.1,2.3) {$1{-}D$ (open)};
+    \draw (2,2.25) -- (2,0);
     \draw (2,3) -- (2.6,3) to[L, l=$10\,\mathrm{mH}$] (4.3,3) -- (5.2,3);
     \draw (5.2,2.5) rectangle (6.6,3.5);
     \node at (5.9,3) {$V=0$};
@@ -208,9 +214,11 @@ states here).
   \begin{circuitikz}[scale=0.75, every node/.style={font=\small}]
     \draw (0,0) to[V, invert, l=$50\,\mathrm{V}$] (0,3) -- (1,3);
     \draw (1,3) circle(0.05);
-    \draw (1.05,3) -- (1.6,3.3);
     \draw (2,3) circle(0.05);
-    \node[above] at (1.5,3.35) {$D$ (open)};
+    \node[above] at (1.5,3.15) {$D$ (open)};
+    \draw (2,3) -- (2,2.3) circle(0.05);
+    \node[right] at (2.1,2.3) {$1{-}D$ (closed)};
+    \draw (2,2.25) -- (2,0);
     \draw (2,3) -- (2.6,3) to[L, l=$10\,\mathrm{mH}$] (4.3,3) -- (5.2,3);
     \draw (5.2,2.5) rectangle (6.6,3.5);
     \node at (5.9,3) {$V=0$};
@@ -235,6 +243,9 @@ steady-state operating point.
     \draw (0,0) to[V, invert, l=$50\,\mathrm{V}$] (0,3) -- (1,3);
     \draw (1,3) circle(0.05) -- (2,3) circle(0.05);
     \node[above] at (1.5,3.15) {$D$};
+    \draw (2,2.3) circle(0.05);
+    \node[right] at (2.1,2.3) {$1{-}D$};
+    \draw (2,2.25) -- (2,0);
     \draw (2,3) -- (2.6,3) to[L, l=$10\,\mathrm{mH}$] (4.3,3) -- (5.2,3);
     \draw (5.2,2.5) rectangle (6.6,3.5);
     \node at (5.9,3) {$V=2.5$};
