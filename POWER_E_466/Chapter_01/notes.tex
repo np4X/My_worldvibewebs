@@ -41,7 +41,7 @@ average output of $V_{out} = 20\,\text{V}$ across a resistive load.
   \centering
   \begin{circuitikz}[scale=0.85, every node/.style={font=\small}]
     \draw (0,0)
-      to[V, l=$50\,\mathrm{V}$] (0,3)
+      to[V, invert, l=$50\,\mathrm{V}$] (0,3)
       -- (1.5,3);
     \draw (1.5,2.5) rectangle (3.5,3.5);
     \node at (2.5,3) {\Large ?};
