@@ -13,8 +13,14 @@
         <mxCell id="capacitor" value="Capacitor" style="shape=mxgraph.electrical.capacitors.capacitor_1;html=1;" vertex="1" parent="1">
           <mxGeometry x="80" y="180" width="60" height="40" as="geometry" />
         </mxCell>
+        <mxCell id="capacitor_label" value="C" style="text;html=1;align=center;verticalAlign=middle;fontSize=16;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="150" y="188" width="24" height="24" as="geometry" />
+        </mxCell>
         <mxCell id="inductor" value="Inductor" style="shape=mxgraph.electrical.inductors.inductor_2;html=1;" vertex="1" parent="1">
           <mxGeometry x="80" y="260" width="80" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="inductor_label" value="L" style="text;html=1;align=center;verticalAlign=middle;fontSize=16;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="170" y="258" width="24" height="24" as="geometry" />
         </mxCell>
         <mxCell id="battery" value="Battery" style="shape=mxgraph.electrical.electrical_symbols.battery_cell_2;html=1;" vertex="1" parent="1">
           <mxGeometry x="80" y="340" width="60" height="30" as="geometry" />
