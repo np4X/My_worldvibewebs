@@ -40,7 +40,7 @@ average output of $V_{out} = 20\,\text{V}$ across a resistive load.
 
 \begin{figure}[h!]
   \centering
-  \begin{circuitikz}[scale=0.85, every node/.style={font=\small}]
+  \begin{circuitikz}[scale=0.85, every node/.style={font=\footnotesize}]
     \draw (0,0)
       to[V, invert, l=$50\,\mathrm{V}$] (0,3)
       -- (1.5,3);
@@ -66,7 +66,7 @@ $D$:
 
 \begin{figure}[h!]
   \centering
-  \begin{tikzpicture}[scale=1, every node/.style={font=\footnotesize}]
+  \begin{tikzpicture}[scale=1, every node/.style={font=\scriptsize}]
     \draw[->] (-0.4,0) -- (6.8,0) node[right] {$t$};
     \draw[->] (0,-0.2) -- (0,1.5) node[above] {$v(t)$};
     \draw[very thick]
@@ -94,7 +94,7 @@ suppressing the switching-frequency content.
 
 \begin{figure}[h!]
   \centering
-  \begin{circuitikz}[scale=0.65, every node/.style={font=\small}]
+  \begin{circuitikz}[scale=0.65, every node/.style={font=\footnotesize}]
     \draw (0,0) to[V, invert, l=$V_{in}$] (0,3) -- (1,3);
     \draw (1,3) circle(0.05);
     \draw (1.05,3) -- (1.8,3.25);
@@ -155,7 +155,7 @@ while it connects to ground (duration $(1-D)T_s$):
 
 \begin{figure}[h!]
   \centering
-  \begin{tikzpicture}[scale=1, every node/.style={font=\footnotesize}]
+  \begin{tikzpicture}[scale=1, every node/.style={font=\scriptsize}]
     \draw[->] (-0.7,0) -- (6.8,0) node[right] {$t$};
     \draw[->] (0,-0.3) -- (0,2.2) node[above] {$i_L(t)$};
     \draw[very thick,red]
@@ -184,7 +184,7 @@ At $t=0^+$: $i_L = 5\,\text{A}$, $i_O = 0$, $i_C = i_L - i_O = 5\,\text{A}$.
 
 \begin{figure}[h!]
   \centering
-  \begin{circuitikz}[scale=0.75, every node/.style={font=\small}]
+  \begin{circuitikz}[scale=0.75, every node/.style={font=\footnotesize}]
     \draw (0,0) to[V, invert, l=$50\,\mathrm{V}$] (0,3) -- (1,3);
     \draw (1,3) circle(0.05) -- (2,3) circle(0.05);
     \node[above] at (1.5,3.15) {$D$ (closed)};
@@ -211,7 +211,7 @@ states here).
 
 \begin{figure}[h!]
   \centering
-  \begin{circuitikz}[scale=0.75, every node/.style={font=\small}]
+  \begin{circuitikz}[scale=0.75, every node/.style={font=\footnotesize}]
     \draw (0,0) to[V, invert, l=$50\,\mathrm{V}$] (0,3) -- (1,3);
     \draw (1,3) circle(0.05);
     \draw (2,3) circle(0.05);
@@ -239,7 +239,7 @@ steady-state operating point.
 
 \begin{figure}[h!]
   \centering
-  \begin{circuitikz}[scale=0.75, every node/.style={font=\small}]
+  \begin{circuitikz}[scale=0.75, every node/.style={font=\footnotesize}]
     \draw (0,0) to[V, invert, l=$50\,\mathrm{V}$] (0,3) -- (1,3);
     \draw (1,3) circle(0.05) -- (2,3) circle(0.05);
     \node[above] at (1.5,3.15) {$D$};
@@ -262,7 +262,7 @@ steady-state operating point.
 \begin{frame}{Approaching steady state}
 \begin{figure}[h!]
   \centering
-  \begin{tikzpicture}[scale=0.85, every node/.style={font=\scriptsize}]
+  \begin{tikzpicture}[scale=0.85, every node/.style={font=\tiny}]
     \draw[->] (-0.3,0) -- (8.5,0) node[right] {$t$};
     \draw[->] (0,-0.3) -- (0,4) node[above] {$i_L(t)$};
     \draw[very thick]
@@ -297,7 +297,7 @@ circuit's own voltage/current) for the $C$--$B$ throw.
 
 \begin{figure}[h!]
   \centering
-  \begin{circuitikz}[scale=0.75, every node/.style={font=\small}]
+  \begin{circuitikz}[scale=0.75, every node/.style={font=\footnotesize}]
     \draw (0,0) to[V, invert, l=$V_{S}$] (0,3) -- (1.2,3);
     \node[nmos, rotate=-90] (M1) at (2,3) {};
     \draw (1.2,3) -| (M1.S) node[above]{$A$};
@@ -327,7 +327,7 @@ on along the current axis, off along the voltage axis) matches an
 
 \begin{figure}[h!]
   \centering
-  \begin{tikzpicture}[scale=1,every node/.style={font=\small}]
+  \begin{tikzpicture}[scale=1,every node/.style={font=\footnotesize}]
     \draw[->] (-0.3,0) -- (2.5,0) node[right] {$V_{AB}$};
     \draw[->] (0,-0.3) -- (0,2.2) node[above] {$I_{AB}$};
     \draw[very thick,red] (0,0) -- (0,1.8) node[above]{ON};
@@ -347,7 +347,7 @@ matches a \emph{passive} switch: a diode.
 
 \begin{figure}[h!]
   \centering
-  \begin{tikzpicture}[scale=1,every node/.style={font=\small}]
+  \begin{tikzpicture}[scale=1,every node/.style={font=\footnotesize}]
     \draw[->] (-0.3,0) -- (2.5,0) node[right] {$V_{CB}$};
     \draw[->] (0,-0.3) -- (0,2.2) node[above] {$I_{CB}$};
     \draw[very thick,red] (0,0) -- (0,1.8) node[above]{ON};
@@ -379,7 +379,7 @@ matches a \emph{passive} switch: a diode.
 \begin{frame}{Switch device characteristics (reference figures)}
 \begin{figure}[h!]
   \centering
-  \begin{tikzpicture}[scale=0.75, every node/.style={font=\scriptsize}]
+  \begin{tikzpicture}[scale=0.75, every node/.style={font=\tiny}]
     \begin{scope}
       \draw[->] (-0.2,0) -- (1.8,0) node[right]{$v$};
       \draw[->] (0,-0.2) -- (0,1.6) node[above]{$i$};
@@ -411,7 +411,7 @@ matches a \emph{passive} switch: a diode.
 \begin{frame}{Buck: Summary}
 \begin{figure}[h!]
   \centering
-  \begin{circuitikz}[scale=0.75, every node/.style={font=\small}]
+  \begin{circuitikz}[scale=0.75, every node/.style={font=\footnotesize}]
     \draw (0,0) to[V, invert, l=$V_{S}$] (0,3) -- (1.2,3);
     \node[nmos, rotate=-90] (M1) at (2,3) {};
     \draw (1.2,3) -| (M1.S) node[above]{$A$};
