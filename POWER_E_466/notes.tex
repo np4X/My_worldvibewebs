@@ -1,229 +1,170 @@
-\documentclass[11pt]{beamer}
+\documentclass[12pt]{beamer}
 
 \usetheme{Madrid}
 \usepackage{amsmath,amssymb}
 \usepackage{graphicx}
 \usepackage{tikz}
-
-% Blank placeholder for a figure that will later be replaced with a real
-% circuit diagram, graph, or a scan from the source notes.
-\newcommand{\blankfig}[3][0.7\linewidth]{%
-  \begin{figure}[h!]
-    \centering
-    \begin{tikzpicture}
-      \draw[dashed] (0,0) rectangle (#1,#2);
-      \node at (0.5*#1,0.5*#2) {\itshape (figure placeholder)};
-    \end{tikzpicture}
-    \caption{\small #3}
-  \end{figure}
-}
+\usepackage{multicol}
+\usepackage{float}
 
 \title{Power Electronics --- Chapter 1}
-\subtitle{DC-DC Converters: Buck Converter}
+\subtitle{DC-DC Converters}
 \author{POWER\_E\_466}
 \date{}
+
+
 
 \begin{document}
 
 \frame{\titlepage}
 
-\begin{frame}{Buck Converter}
-The buck converter is a DC-DC converter that steps down voltage
-($V_{out} < V_{in}$).
+\begin{frame}{Buck Converter:Intro}
+	The buck converter is a DC-DC converter that steps down voltage
+	($V_{out} < V_{in}$).
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.7\linewidth]{Graphic/buck_converter/buck_converter_unknow.drawio.png}
+		\label{fig:buckconverterunknow}
+	\end{figure}
+	\vfill
 \end{frame}
 
-\begin{frame}{Motivating the topology}
-Start from a black-box model: given $V_{in} = 50\,\text{V}$, we want an
-average output of $V_{out} = 20\,\text{V}$ across a resistive load.
-
-\blankfig[4cm]{3cm}{Black-box step-down converter: $V_{in}=50\,\text{V}$ in, unknown network, $\langle V \rangle = 20\,\text{V}$ across the load.}
+\begin{frame}{Buck Converter:Switching}
+	Start from a black-box model: Given $V_i=50V$, our goal $<V_o>=20v$.\\
+	We start with just simple on-off switching.\\
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.7\linewidth]{Graphic/buck_converter/buck_converter_switch_ideal.drawio.png}
+		\label{fig:buckconverterswitchideal}
+	\end{figure}
+	We'll get PWM with average output voltage of 20V
+	\vfill
 \end{frame}
 
-\begin{frame}{Ideal switch model}
-The simplest way to reduce an average voltage is to switch the input on
-and off periodically (an ideal SPDT switch connecting the load either to
-$V_{in}$ or to ground), so that the average value is controlled by the
-fraction of time spent connected to $V_{in}$ --- the \emph{duty cycle}
-$D$:
-\[
-  \langle V \rangle = D \, V_{in}.
-\]
-
-\blankfig[6cm]{3cm}{Ideal switch model: pole connects to $V_{in}$ for a
-fraction $D$ of the switching period $T_s$, and to ground for the
-remaining $(1-D)T_s$, producing a PWM waveform whose average is $\langle
-V \rangle$.}
+\begin{frame}{Buck Converter:Filter Added}
+	From Fourier we know that DC offset have frequency at 0 hz. $(f=0 \text{ hz})$
+	To gain DC offset we used LC filter circuit which lossless in ideal.
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.7\linewidth]{Graphic/buck_converter/buck_converter_switch.drawio.png}
+		\label{fig:buckconverterswitch}
+	\end{figure}
+	\vfill
 \end{frame}
 
-\begin{frame}{Why we need an LC filter}
-The switched (PWM) waveform is not a clean DC voltage --- it still
-contains switching-frequency ripple. From a Fourier-series point of
-view, the desired DC output corresponds only to the $f = 0\,\text{Hz}$
-(DC offset) term; every other harmonic should be attenuated. A low-pass
-\emph{LC filter} does exactly this: it passes the DC component while
-suppressing the switching-frequency content.
-
-\blankfig[8cm]{3.5cm}{Buck converter: switch $D$ followed by an $LC$
-low-pass filter, driving a resistive load. This is the buck converter
-topology.}
+\begin{frame}{Buck Converter:Small Ripple Assumption}
+	For an easier circuits analysis we assume the filter provide small  ripple voltage. ($\delta \approx 0$)
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.9\linewidth]{Graphic/buck_converter/buck_converter_small_ripple.drawio.png}
+		\label{fig:buckconvertersmallripple}
+	\end{figure}
+	We can assume that $V_o$ constant DC offset.
+	\vfill
 \end{frame}
 
-\begin{frame}{Inductor and capacitor averaging identities}
-For an inductor,
-\[
-  v = L \frac{di}{dt}
-  \quad\Longleftrightarrow\quad
-  i = \frac{1}{L}\int v \, dt,
-\]
-so if $i$ is periodic in steady state, the average inductor voltage must
-be zero:
-\[
-  \langle v_L \rangle = 0 \qquad \text{(volt-second balance)}.
-\]
-
-For a capacitor,
-\[
-  i = C \frac{dv}{dt}
-  \quad\Longleftrightarrow\quad
-  v = \frac{1}{C}\int i \, dt,
-\]
-so if $v$ is periodic in steady state, the average capacitor current
-must be zero:
-\[
-  \langle i_C \rangle = 0 \qquad \text{(current-second/charge balance)}.
-\]
+\begin{frame}{Buck Converter:Inductor and capacitor averaging identities}
+	For an inductor,
+	\[
+	v = L \frac{di}{dt}
+	\quad\Longleftrightarrow\quad
+	i = \frac{1}{L}\int v \, dt,
+	\]
+	so if $i$ is periodic in steady state, the average inductor voltage must
+	be zero:
+	\[
+	\langle v_L \rangle = 0 \qquad \text{(volt-second balance)}.
+	\]
+	
+	For a capacitor,
+	\[
+	i = C \frac{dv}{dt}
+	\quad\Longleftrightarrow\quad
+	v = \frac{1}{C}\int i \, dt,
+	\]
+	so if $v$ is periodic in steady state, the average capacitor current
+	must be zero:
+	\[
+	\langle i_C \rangle = 0 \qquad \text{(current-second/charge balance)}.
+	\]
 \end{frame}
 
-\begin{frame}{Steady-state inductor current ripple}
-Over one switching period $T_s$, the inductor current $i_L$ ramps up
-while the switch connects to $V_{in}$ (duration $DT_s$) and ramps down
-while it connects to ground (duration $(1-D)T_s$):
-\[
-  \frac{di_L}{dt} = \frac{v_L}{L}, \qquad
-  2\,\Delta i_L = \frac{V}{L}\,D T_s
-  \quad\text{(rising)}, \qquad
-  2\,\Delta i_L = \frac{V}{L}\,(1-D) T_s
-  \quad\text{(falling)}.
-\]
-
-\blankfig[8cm]{3.5cm}{Steady-state inductor current: triangular ripple of
-peak-to-peak $2\Delta i_L$, rising for $DT_s$ and falling for
-$(1-D)T_s$ each switching period.}
+\begin{frame}{Buck Converter:Steady-State Switching On}
+	\begin{center}
+		\includegraphics[width=0.7\linewidth]{Graphic/buck_converter/buck_converter_switch_on.drawio.png}
+	\end{center}
+	\[\frac{di_L}{dt} = \frac{V}{L} = \frac{V_s-V_o}{L}; \space \Delta t = DT; \space \Delta  i_{L \text{-on}} = DT \cdot \frac{V_s-V_o}{L} \]
 \end{frame}
 
-\begin{frame}{Worked example: switch ON}
-Given $V_{in} = 50\,\text{V}$, $D = 0.5$, $L = 10\,\text{mH}$,
-$T_s = 1\,\text{ms}$, and (for this simplified example) an output branch
-modelled as a current source with $V = 0$:
-
-\[
-  \frac{di_L}{dt} = \frac{50}{10^{-3}} = 50\times10^{3}\ \text{A/s}
-  \;\longrightarrow\; \Delta i_L = 5\,\text{A}.
-\]
-At $t=0^+$: $i_L = 5\,\text{A}$, $i_O = 0$, $i_C = i_L - i_O = 5\,\text{A}$.
-
-\blankfig[8cm]{3cm}{Buck circuit during the ON interval: $V_{in}=50\,\text{V}$, $D=0.5$, $L=10\,\text{mH}$, $T_s=1\,\text{ms}$, output branch at $V=0$.}
+\begin{frame}{Buck Converter:Steady-State Switching Off}
+	\begin{center}
+	\includegraphics[width=0.7\linewidth]{Graphic/buck_converter/buck_converter_switch_off.drawio.png}
+\end{center}
+	\[\frac{di_L}{dt} = \frac{V}{L} = \frac{V_o}{L}; \space \Delta t = (1-D)T; \space \Delta i_{L \text{-off}} = (1-D)T \cdot \frac{V_o}{L}  \]
 \end{frame}
 
-\begin{frame}{Worked example: switch OFF}
-\[
-  \frac{di_L}{dt} = \frac{0}{10^{-3}} = 0\ \text{A/s},
-\]
-so $i_L$ stays constant at $5\,\text{A}$ while the switch is off (for
-this particular example, since the inductor sees $0\,\text{V}$ in both
-states here).
-
-\blankfig[8cm]{3.5cm}{Buck circuit during the OFF interval, same
-component values as above.}
+\begin{frame}{Buck Converter:Steady-State Inductor current}
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.4\linewidth]{Graphic/buck_converter/buck_converter_L_VI.drawio.png}
+		\label{fig:buckconverterlvi}
+	\end{figure}
+	
 \end{frame}
 
-\begin{frame}{Is this steady state?}
-Not necessarily --- $V_{out}$ can still change from cycle to cycle if
-the circuit is not yet in continuous, periodic operation. As $i_O$
-increases from $0$, $i_C = i_L - i_O$ decreases; by charge balance,
-$\langle i_C \rangle = 0$ is exactly the condition that defines the
-steady-state operating point.
-
-\blankfig[8cm]{3.5cm}{Buck circuit with increased output current
-($V \approx 2.5\,\text{V}$ example): as $i_O \uparrow$, $i_C \downarrow$,
-illustrating the approach to $\langle i_C \rangle = 0$ (charge balance).}
+\begin{frame}{Buck Converter:Transient Switching On (1)}
+	For easier analysis we using discrete domain to analyze.
+	$V_s=50 \text{V}$ $V_o=0 \text{V}$ $D=0.5$ $L=10 \text{mH}$ $T=1 \text{ms}$ 
+	\begin{center}
+		\includegraphics[width=0.7\linewidth]{Graphic/buck_converter/buck_converter_switch_on.drawio.png}
+	\end{center}
+	\[ \Delta  i_{L \text{-on}} = DT \cdot \frac{V_s-V_o}{L} = 5 \text{A} ; \space i_L = 5 \text{A} \]
+	\[ i_c = i_l - i_o = i_l - \frac{V_o}{R} = 5 \text{A} \]
 \end{frame}
 
-\begin{frame}{Approaching steady state}
-Classic multi-period inductor current waveform $i_L(t)$ ramping toward
-steady state: slope $\frac{V_g - v(t)}{L}$ while on, slope
-$\frac{-v(t)}{L}$ while off, converging so that $i_C \approx 0$ in
-steady state (cf.\ Erickson, \emph{Fundamentals of Power Electronics}).
-
-\blankfig[9cm]{3.8cm}{Classic multi-period inductor current waveform
-$i_L(t)$ ramping toward steady state (cf.\ Erickson, \emph{Fundamentals
-of Power Electronics}).}
+\begin{frame}{Buck Converter:Transient Switching Off (1)}
+	$V_s=50 \text{V}$ $V_o=0 \text{V}$ $D=0.5$ $L=10 \text{mH}$ $T=1 \text{ms}$ 
+	\begin{center}
+		\includegraphics[width=0.7\linewidth]{Graphic/buck_converter/buck_converter_switch_off.drawio.png}
+	\end{center}
+	\[ \Delta i_{L \text{-off}} = (1-D)T \cdot \frac{V_o}{L} = 0 \text{A} ; \space i_L = 5 \text{A} \]
+	\[ i_c = i_l - i_o = i_l - \frac{V_o}{R} = 5 \text{A} \]
 \end{frame}
 
-\begin{frame}{Realizing the switch with real devices}
-The ideal SPDT switch (poles $A$, $B$, $C$) is not a physical component.
-It is realized using one \emph{active} switch (a transistor, controlled
-by a gate/base signal) for the $A$--$B$ throw, and one \emph{passive}
-switch (a diode, which conducts automatically depending on the
-circuit's own voltage/current) for the $C$--$B$ throw.
-
-\blankfig[9cm]{3.5cm}{Replacing the ideal switch with a MOSFET (A--B)
-and a diode (C--B), giving the practical buck converter realization.}
+\begin{frame}{Buck Converter:Transient Switching On (2)}
+	For easier analysis we using discrete domain to analyze.
+	$V_s=50 \text{V}$ $V_o=2.5 \text{V}$ $D=0.5$ $L=10 \text{mH}$ $T=1 \text{ms}$ 
+	\begin{center}
+		\includegraphics[width=0.7\linewidth]{Graphic/buck_converter/buck_converter_switch_on.drawio.png}
+	\end{center}
+	\[ \Delta  i_{L \text{-on}} = DT \cdot \frac{V_s-V_o}{L} = 4.75 \text{A} ; \space i_L = 9.75 \text{A} \]
+	\[ i_c = i_l - i_o = i_l - \frac{V_o}{R} \]
 \end{frame}
 
-\begin{frame}{Switch analysis: node A--B (transistor position)}
-When the ideal switch is ON: $V_{AB} = 0$, $I_{AB} = I_L$. When OFF:
-$V_{AB} = V_S$, $I_{AB} = 0$. This $(I,V)$ locus (first quadrant only:
-on along the current axis, off along the voltage axis) matches an
-\emph{active} switch such as a MOSFET/BJT/IGBT.
-
-\blankfig[7cm]{3.5cm}{$I_{AB}$--$V_{AB}$ switch locus for the transistor
-position: ON along the current axis, OFF along the voltage axis.}
+\begin{frame}{Buck Converter:Transient Switching Off (2)}
+	$V_s=50 \text{V}$ $V_o=2.5 \text{V}$ $D=0.5$ $L=10 \text{mH}$ $T=1 \text{ms}$ 
+	\begin{center}
+		\includegraphics[width=0.7\linewidth]{Graphic/buck_converter/buck_converter_switch_off.drawio.png}
+	\end{center}
+	\[ \Delta i_{L \text{-off}} = (1-D)T \cdot \frac{V_o}{L} = 0 \text{A} ; \space i_L = 5 \text{A} \]
+	\[ i_c = i_l - i_o = i_l - \frac{V_o}{R} \]
 \end{frame}
 
-\begin{frame}{Switch analysis: node C--B (diode position)}
-When the ideal switch is ON (meaning the $A$--$B$ throw is closed):
-$V_{CB} = -V_S$, $I_{CB} = 0$. When OFF (meaning $C$--$B$ conducts
-instead): $V_{CB} = 0$, $I_{CB} = I_L$. This locus (blocks negative
-voltage, conducts positive current, no external control terminal)
-matches a \emph{passive} switch: a diode.
-
-\blankfig[7cm]{3.5cm}{$I_{CB}$--$V_{CB}$ switch locus for the diode
-position: blocks reverse voltage (negative $V_{CB}$), conducts forward
-current.}
-\end{frame}
-
-\begin{frame}{Switch device characteristics}
-\begin{itemize}
-  \item \textbf{BJT / IGBT} are active switches: the conducting state is
-  set entirely by the control-terminal signal, independent of the
-  waveforms at the power terminals. Ideal characteristic: $i = 0$ when
-  off (blocks $v \geq 0$); $v \approx 0$ when on (conducts
-  $i \geq 0$). Poor/no reverse-conducting or reverse-blocking
-  capability.
-  \item \textbf{MOSFET} behaves similarly, but can additionally conduct
-  in reverse. It is normally operated with $i \geq 0$, same as BJT/IGBT,
-  so an active SPST switch can be realized with a BJT, IGBT, or MOSFET.
-  \item \textbf{Diode} is a passive switch with no control terminal: its
-  state is determined entirely by the terminal waveforms $i(t)$,
-  $v(t)$. Ideal characteristic: off ($i=0$) when $v<0$; on ($v=0$) when
-  $i>0$. It can block negative voltage but not positive voltage.
-\end{itemize}
-\end{frame}
-
-\begin{frame}{Switch device characteristics (reference figures)}
-\blankfig[8cm]{5.5cm}{Idealized switch characteristics for BJT/IGBT,
-MOSFET, and diode (textbook reference figures).}
-\end{frame}
-
-\begin{frame}{Buck: Summary}
-\blankfig[8cm]{3.5cm}{Final buck converter circuit: MOSFET (A--B),
-freewheeling diode (C--B), $LC$ output filter, load.}
-
-\[
-  \boxed{V_O = D\,V_S}
-  \qquad\text{with } \langle i_C \rangle \to 0 \text{ in steady state.}
-\]
+\begin{frame}{Buck Converter:Summary}
+	\begin{multicols}{2}
+		\begin{figure}[H]
+		\centering
+			\includegraphics[width=0.8\linewidth]{Graphic/buck_converter/buck_converter_switch_on.drawio.png}
+		\end{figure}
+		\[\Delta  i_{L \text{-on}} = DT \cdot \frac{V_s-V_o}{L}\]
+		\columnbreak
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.8\linewidth]{Graphic/buck_converter/buck_converter_switch_off.drawio.png}
+		\end{figure}
+		\[ \Delta i_{L \text{-off}} = (1-D)T \cdot \frac{V_o}{L}\]
+		\end{multicols}
 \end{frame}
 
 \end{document}
