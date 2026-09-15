@@ -4,6 +4,7 @@
 \usepackage{amsmath,amssymb}
 \usepackage{graphicx}
 \usepackage{tikz}
+\usepackage[american voltages]{circuitikz}
 
 % Blank placeholder for a figure that will later be replaced with a real
 % circuit diagram (drawio export) or a scan from the source notes.
@@ -36,7 +37,20 @@ The buck converter is a DC-DC converter that steps down voltage
 Start from a black-box model: given $V_{in} = 50\,\text{V}$, we want an
 average output of $V_{out} = 20\,\text{V}$ across a resistive load.
 
-\blankfig[4cm]{3cm}{Black-box step-down converter: $V_{in}=50\,\text{V}$ in, unknown network, $\langle V \rangle = 20\,\text{V}$ across the load.}
+\begin{figure}[h!]
+  \centering
+  \begin{circuitikz}[scale=0.85, every node/.style={font=\small}]
+    \draw (0,0)
+      to[V, l=$50\,\mathrm{V}$] (0,3)
+      -- (1.5,3);
+    \draw (1.5,2.5) rectangle (3.5,3.5);
+    \node at (2.5,3) {\Large ?};
+    \draw (3.5,3) -- (5,3)
+      to[R, l_=$20\,\mathrm{V}$] (5,0)
+      -- (0,0);
+  \end{circuitikz}
+  \caption{\small Black-box step-down converter: $V_{in}=50\,\text{V}$ in, unknown network, $\langle V \rangle = 20\,\text{V}$ across the load.}
+\end{figure}
 \end{frame}
 
 \begin{frame}{Ideal switch model}
