@@ -50,3 +50,34 @@ this ahead of time, so double-check names here first.
    labels upright).
 5. After editing, push and check the Actions tab / pull the auto-rendered
    `.png` — there's no faster local way to verify a shape actually renders.
+
+## House style (observed from hand-edits in the draw.io desktop app)
+
+`buck_converter.drawio` is the base buck circuit and may get edited or
+branched into variants later, so match its conventions when generating or
+extending circuits in this repo:
+
+- **Label components the way the source notes label them** — e.g. the
+  switch is "D" because the PDF names it that; L/C/R and the source were
+  left unlabeled (just symbols) because the notes don't caption them
+  individually there. Don't blanket-add or blanket-remove labels — follow
+  what's actually in the reference material for that diagram.
+- **Orient with `direction=south`/`north`/`west`/`east`, not `rotation=90`.**
+  That's what the desktop app itself writes when you rotate a shape by
+  hand, so using it keeps generated files consistent with manual edits.
+- **Prefer the flatter/slimmer stencil variant for inline placement**:
+  `mxgraph.electrical.inductors.inductor_5` (h=14, flat coil) over
+  `inductor` (h=34+), `resistors.resistor_2` over `resistor_1`. Check the
+  sidebar file for size — smaller `height` values fit better on a tight
+  rail.
+- **Wires can be freeform.** A plain edge with just `sourcePoint`/
+  `targetPoint` mxPoints (and an optional `points` array for a single jog)
+  is fine and is exactly what manual click-drag wiring produces — edges
+  don't need to be bound to `source=`/`target=` cell IDs with
+  `entryX`/`exitX` constraints unless you want them to stay attached when
+  a component moves.
+- Match the palette's exact style baseline when possible:
+  `pointerEvents=1;verticalLabelPosition=bottom;shadow=0;dashed=0;
+  align=center;html=1;verticalAlign=top;shape=...` (include `shadow=0;
+  dashed=0;` even though it's a no-op visually — it's what dragging the
+  shape from the sidebar actually produces).
