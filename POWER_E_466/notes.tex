@@ -3,6 +3,20 @@
 \usetheme{Madrid}
 \usepackage{amsmath,amssymb}
 \usepackage{graphicx}
+\usepackage{tikz}
+
+% Blank placeholder for a figure that will later be replaced with a real
+% circuit diagram, graph, or a scan from the source notes.
+\newcommand{\blankfig}[3][0.7\linewidth]{%
+  \begin{figure}[h!]
+    \centering
+    \begin{tikzpicture}
+      \draw[dashed] (0,0) rectangle (#1,#2);
+      \node at (0.5*#1,0.5*#2) {\itshape (figure placeholder)};
+    \end{tikzpicture}
+    \caption{\small #3}
+  \end{figure}
+}
 
 \title{Power Electronics --- Chapter 1}
 \subtitle{DC-DC Converters: Buck Converter}
@@ -21,6 +35,8 @@ The buck converter is a DC-DC converter that steps down voltage
 \begin{frame}{Motivating the topology}
 Start from a black-box model: given $V_{in} = 50\,\text{V}$, we want an
 average output of $V_{out} = 20\,\text{V}$ across a resistive load.
+
+\blankfig[4cm]{3cm}{Black-box step-down converter: $V_{in}=50\,\text{V}$ in, unknown network, $\langle V \rangle = 20\,\text{V}$ across the load.}
 \end{frame}
 
 \begin{frame}{Ideal switch model}
@@ -32,6 +48,11 @@ $D$:
 \[
   \langle V \rangle = D \, V_{in}.
 \]
+
+\blankfig[6cm]{3cm}{Ideal switch model: pole connects to $V_{in}$ for a
+fraction $D$ of the switching period $T_s$, and to ground for the
+remaining $(1-D)T_s$, producing a PWM waveform whose average is $\langle
+V \rangle$.}
 \end{frame}
 
 \begin{frame}{Why we need an LC filter}
@@ -41,6 +62,10 @@ view, the desired DC output corresponds only to the $f = 0\,\text{Hz}$
 (DC offset) term; every other harmonic should be attenuated. A low-pass
 \emph{LC filter} does exactly this: it passes the DC component while
 suppressing the switching-frequency content.
+
+\blankfig[8cm]{3.5cm}{Buck converter: switch $D$ followed by an $LC$
+low-pass filter, driving a resistive load. This is the buck converter
+topology.}
 \end{frame}
 
 \begin{frame}{Inductor and capacitor averaging identities}
@@ -80,6 +105,10 @@ while it connects to ground (duration $(1-D)T_s$):
   2\,\Delta i_L = \frac{V}{L}\,(1-D) T_s
   \quad\text{(falling)}.
 \]
+
+\blankfig[8cm]{3.5cm}{Steady-state inductor current: triangular ripple of
+peak-to-peak $2\Delta i_L$, rising for $DT_s$ and falling for
+$(1-D)T_s$ each switching period.}
 \end{frame}
 
 \begin{frame}{Worked example: switch ON}
@@ -92,6 +121,8 @@ modelled as a current source with $V = 0$:
   \;\longrightarrow\; \Delta i_L = 5\,\text{A}.
 \]
 At $t=0^+$: $i_L = 5\,\text{A}$, $i_O = 0$, $i_C = i_L - i_O = 5\,\text{A}$.
+
+\blankfig[8cm]{3cm}{Buck circuit during the ON interval: $V_{in}=50\,\text{V}$, $D=0.5$, $L=10\,\text{mH}$, $T_s=1\,\text{ms}$, output branch at $V=0$.}
 \end{frame}
 
 \begin{frame}{Worked example: switch OFF}
@@ -101,6 +132,9 @@ At $t=0^+$: $i_L = 5\,\text{A}$, $i_O = 0$, $i_C = i_L - i_O = 5\,\text{A}$.
 so $i_L$ stays constant at $5\,\text{A}$ while the switch is off (for
 this particular example, since the inductor sees $0\,\text{V}$ in both
 states here).
+
+\blankfig[8cm]{3.5cm}{Buck circuit during the OFF interval, same
+component values as above.}
 \end{frame}
 
 \begin{frame}{Is this steady state?}
@@ -109,6 +143,10 @@ the circuit is not yet in continuous, periodic operation. As $i_O$
 increases from $0$, $i_C = i_L - i_O$ decreases; by charge balance,
 $\langle i_C \rangle = 0$ is exactly the condition that defines the
 steady-state operating point.
+
+\blankfig[8cm]{3.5cm}{Buck circuit with increased output current
+($V \approx 2.5\,\text{V}$ example): as $i_O \uparrow$, $i_C \downarrow$,
+illustrating the approach to $\langle i_C \rangle = 0$ (charge balance).}
 \end{frame}
 
 \begin{frame}{Approaching steady state}
@@ -116,6 +154,10 @@ Classic multi-period inductor current waveform $i_L(t)$ ramping toward
 steady state: slope $\frac{V_g - v(t)}{L}$ while on, slope
 $\frac{-v(t)}{L}$ while off, converging so that $i_C \approx 0$ in
 steady state (cf.\ Erickson, \emph{Fundamentals of Power Electronics}).
+
+\blankfig[9cm]{5.5cm}{Classic multi-period inductor current waveform
+$i_L(t)$ ramping toward steady state (cf.\ Erickson, \emph{Fundamentals
+of Power Electronics}).}
 \end{frame}
 
 \begin{frame}{Realizing the switch with real devices}
@@ -124,6 +166,9 @@ It is realized using one \emph{active} switch (a transistor, controlled
 by a gate/base signal) for the $A$--$B$ throw, and one \emph{passive}
 switch (a diode, which conducts automatically depending on the
 circuit's own voltage/current) for the $C$--$B$ throw.
+
+\blankfig[9cm]{3.5cm}{Replacing the ideal switch with a MOSFET (A--B)
+and a diode (C--B), giving the practical buck converter realization.}
 \end{frame}
 
 \begin{frame}{Switch analysis: node A--B (transistor position)}
@@ -131,6 +176,9 @@ When the ideal switch is ON: $V_{AB} = 0$, $I_{AB} = I_L$. When OFF:
 $V_{AB} = V_S$, $I_{AB} = 0$. This $(I,V)$ locus (first quadrant only:
 on along the current axis, off along the voltage axis) matches an
 \emph{active} switch such as a MOSFET/BJT/IGBT.
+
+\blankfig[7cm]{3.5cm}{$I_{AB}$--$V_{AB}$ switch locus for the transistor
+position: ON along the current axis, OFF along the voltage axis.}
 \end{frame}
 
 \begin{frame}{Switch analysis: node C--B (diode position)}
@@ -139,6 +187,10 @@ $V_{CB} = -V_S$, $I_{CB} = 0$. When OFF (meaning $C$--$B$ conducts
 instead): $V_{CB} = 0$, $I_{CB} = I_L$. This locus (blocks negative
 voltage, conducts positive current, no external control terminal)
 matches a \emph{passive} switch: a diode.
+
+\blankfig[7cm]{3.5cm}{$I_{CB}$--$V_{CB}$ switch locus for the diode
+position: blocks reverse voltage (negative $V_{CB}$), conducts forward
+current.}
 \end{frame}
 
 \begin{frame}{Switch device characteristics}
@@ -159,7 +211,15 @@ matches a \emph{passive} switch: a diode.
 \end{itemize}
 \end{frame}
 
+\begin{frame}{Switch device characteristics (reference figures)}
+\blankfig[8cm]{5.5cm}{Idealized switch characteristics for BJT/IGBT,
+MOSFET, and diode (textbook reference figures).}
+\end{frame}
+
 \begin{frame}{Buck: Summary}
+\blankfig[8cm]{3.5cm}{Final buck converter circuit: MOSFET (A--B),
+freewheeling diode (C--B), $LC$ output filter, load.}
+
 \[
   \boxed{V_O = D\,V_S}
   \qquad\text{with } \langle i_C \rangle \to 0 \text{ in steady state.}
