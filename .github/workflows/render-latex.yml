@@ -1,0 +1,42 @@
+name: Render LaTeX to PDF
+
+on:
+  push:
+    paths:
+      - "**/*.tex"
+
+permissions:
+  contents: write
+
+jobs:
+  render:
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Find changed .tex files
+        id: changed
+        run: |
+          FILES=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} -- '*.tex' || true)
+          if [ -z "$FILES" ]; then
+            FILES=$(git ls-files '*.tex')
+          fi
+          echo "files<<EOF" >> "$GITHUB_OUTPUT"
+          echo "$FILES" >> "$GITHUB_OUTPUT"
+          echo "EOF" >> "$GITHUB_OUTPUT"
+
+      - name: Compile LaTeX
+        if: steps.changed.outputs.files != ''
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: ${{ steps.changed.outputs.files }}
+          work_in_root_file_dir: true
+          continue_on_error: false
+
+      - name: Commit rendered PDFs
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Auto-render LaTeX PDFs [skip ci]"
+          file_pattern: "**/*.pdf"
