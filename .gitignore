@@ -1,1 +1,16 @@
 .claude/settings.local.json
+
+# LaTeX build artifacts (local compiles) - CI produces the committed .pdf
+*.aux
+*.log
+*.nav
+*.out
+*.snm
+*.toc
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+
+# draw.io desktop backup files
+.$*.bkp
+.$*.dtmp
