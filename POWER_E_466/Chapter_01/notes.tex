@@ -348,10 +348,10 @@ matches a \emph{passive} switch: a diode.
 \begin{figure}[h!]
   \centering
   \begin{tikzpicture}[scale=1,every node/.style={font=\footnotesize}]
-    \draw[->] (-0.3,0) -- (2.5,0) node[right] {$V_{CB}$};
+    \draw[->] (-2.3,0) -- (0.4,0) node[right] {$V_{CB}$};
     \draw[->] (0,-0.3) -- (0,2.2) node[above] {$I_{CB}$};
     \draw[very thick,red] (0,0) -- (0,1.8) node[above]{ON};
-    \draw[very thick,red] (0,0) -- (2.2,0) node[right]{OFF};
+    \draw[very thick,red] (0,0) -- (-2.2,0) node[left]{OFF};
   \end{tikzpicture}
   \caption{\small $I_{CB}$--$V_{CB}$ switch locus for the diode
   position: blocks reverse voltage, conducts forward current.}
