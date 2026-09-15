@@ -298,12 +298,11 @@ circuit's own voltage/current) for the $C$--$B$ throw.
 \begin{figure}[h!]
   \centering
   \begin{circuitikz}[scale=0.75, every node/.style={font=\small}]
-    \draw (0,0) to[V, invert, l=$V_{S}$] (0,3) -- (1,3);
-    \draw (1,2.6) rectangle (2.4,3.4);
-    \node at (1.7,3) {MOSFET};
-    \node[above] at (1,3.4) {$A$};
-    \node[above] at (2.4,3.4) {$B$};
-    \draw (2.4,3) -- (3.2,3);
+    \draw (0,0) to[V, invert, l=$V_{S}$] (0,3) -- (1.2,3);
+    \node[nmos] (M1) at (2,3) {};
+    \draw (1.2,3) -| (M1.D) node[above]{$A$};
+    \draw (M1.S) |- (2.8,3) node[above]{$B$};
+    \draw (2.8,3) -- (3.2,3);
     \draw (3.2,3) -- (3.2,2.2);
     \draw[fill=black] (3.0,2.2) -- (3.4,2.2) -- (3.2,1.7) -- cycle;
     \draw (3.0,1.7) -- (3.4,1.7);
@@ -413,12 +412,11 @@ matches a \emph{passive} switch: a diode.
 \begin{figure}[h!]
   \centering
   \begin{circuitikz}[scale=0.75, every node/.style={font=\small}]
-    \draw (0,0) to[V, invert, l=$V_{S}$] (0,3) -- (1,3);
-    \draw (1,2.6) rectangle (2.4,3.4);
-    \node at (1.7,3) {MOSFET};
-    \node[above] at (1,3.4) {$A$};
-    \node[above] at (2.4,3.4) {$B$};
-    \draw (2.4,3) -- (3.2,3);
+    \draw (0,0) to[V, invert, l=$V_{S}$] (0,3) -- (1.2,3);
+    \node[nmos] (M1) at (2,3) {};
+    \draw (1.2,3) -| (M1.D) node[above]{$A$};
+    \draw (M1.S) |- (2.8,3) node[above]{$B$};
+    \draw (2.8,3) -- (3.2,3);
     \draw (3.2,3) -- (3.2,2.2);
     \draw[fill=black] (3.0,2.2) -- (3.4,2.2) -- (3.2,1.7) -- cycle;
     \draw (3.0,1.7) -- (3.4,1.7);
