@@ -67,15 +67,15 @@ $D$:
 \begin{figure}[h!]
   \centering
   \begin{tikzpicture}[scale=1, every node/.style={font=\footnotesize}]
-    \draw[->] (-0.2,0) -- (3.4,0) node[right] {$t$};
+    \draw[->] (-0.4,0) -- (6.8,0) node[right] {$t$};
     \draw[->] (0,-0.2) -- (0,1.5) node[above] {$v(t)$};
     \draw[very thick]
-      (0,1) -- (0.4,1) -- (0.4,0) -- (1,0) -- (1,1) -- (1.4,1) -- (1.4,0)
-      -- (2,0) -- (2,1) -- (2.4,1) -- (2.4,0) -- (3,0);
+      (0,1) -- (0.8,1) -- (0.8,0) -- (2,0) -- (2,1) -- (2.8,1) -- (2.8,0)
+      -- (4,0) -- (4,1) -- (4.8,1) -- (4.8,0) -- (6,0);
     \node[left] at (0,1) {$V_{in}$};
-    \draw[dashed] (0,0.4) -- (3.2,0.4) node[right] {$\langle V\rangle = D V_{in}$};
-    \draw[decorate,decoration={brace,amplitude=4pt}] (0,-0.35) -- (0.4,-0.35) node[midway,below=4pt] {$DT_s$};
-    \draw[decorate,decoration={brace,amplitude=4pt}] (0.4,-0.35) -- (1,-0.35) node[midway,below=4pt] {$(1-D)T_s$};
+    \draw[dashed] (0,0.4) -- (6.4,0.4) node[right] {$\langle V\rangle = D V_{in}$};
+    \draw[decorate,decoration={brace,amplitude=4pt}] (0,-0.4) -- (0.8,-0.4) node[midway,below=6pt] {$DT_s$};
+    \draw[decorate,decoration={brace,amplitude=4pt}] (0.8,-0.4) -- (2,-0.4) node[midway,below=6pt] {$(1-D)T_s$};
   \end{tikzpicture}
   \caption{\small Ideal switch model: pole connects to $V_{in}$ for a
   fraction $D$ of the switching period $T_s$, and to ground for the
@@ -94,7 +94,7 @@ suppressing the switching-frequency content.
 
 \begin{figure}[h!]
   \centering
-  \begin{circuitikz}[scale=0.8, every node/.style={font=\small}]
+  \begin{circuitikz}[scale=0.65, every node/.style={font=\small}]
     \draw (0,0) to[V, invert, l=$V_{in}$] (0,3) -- (1,3);
     \draw (1,3) circle(0.05);
     \draw (1.05,3) -- (1.8,3.25);
@@ -153,14 +153,14 @@ while it connects to ground (duration $(1-D)T_s$):
 \begin{figure}[h!]
   \centering
   \begin{tikzpicture}[scale=1, every node/.style={font=\footnotesize}]
-    \draw[->] (-0.5,0) -- (3.4,0) node[right] {$t$};
+    \draw[->] (-0.7,0) -- (6.8,0) node[right] {$t$};
     \draw[->] (0,-0.3) -- (0,2.2) node[above] {$i_L(t)$};
     \draw[very thick,red]
-      (0,0.4) -- (0.4,1.6) -- (1,0.4) -- (1.4,1.6) -- (2,0.4) -- (2.4,1.6) -- (3,0.4);
-    \draw[dashed] (-0.2,1) -- (3.2,1) node[right] {$I_L$};
-    \draw[decorate,decoration={brace,amplitude=4pt,mirror}] (-0.25,0.4) -- (-0.25,1.6) node[midway,left=6pt] {$2\Delta i_L$};
-    \draw[decorate,decoration={brace,amplitude=4pt}] (0,-0.2) -- (0.4,-0.2) node[midway,below=4pt] {$DT_s$};
-    \draw[decorate,decoration={brace,amplitude=4pt}] (0.4,-0.2) -- (1,-0.2) node[midway,below=4pt] {$(1-D)T_s$};
+      (0,0.4) -- (0.8,1.6) -- (2,0.4) -- (2.8,1.6) -- (4,0.4) -- (4.8,1.6) -- (6,0.4);
+    \draw[dashed] (-0.4,1) -- (6.4,1) node[right] {$I_L$};
+    \draw[decorate,decoration={brace,amplitude=4pt,mirror}] (-0.45,0.4) -- (-0.45,1.6) node[midway,left=6pt] {$2\Delta i_L$};
+    \draw[decorate,decoration={brace,amplitude=4pt}] (0,-0.3) -- (0.8,-0.3) node[midway,below=6pt] {$DT_s$};
+    \draw[decorate,decoration={brace,amplitude=4pt}] (0.8,-0.3) -- (2,-0.3) node[midway,below=6pt] {$(1-D)T_s$};
   \end{tikzpicture}
   \caption{\small Steady-state inductor current: triangular ripple of
   peak-to-peak $2\Delta i_L$, rising for $DT_s$ and falling for
@@ -263,10 +263,9 @@ steady-state operating point.
     \draw[very thick]
       (6,2.75) -- (6.4,3.3) -- (7,3.05)
       -- (7.4,3.35) -- (8,3.1);
-    \node[below] at (0,0) {$i_L(0)=0$};
-    \draw[dashed] (0.4,0) -- (0.4,1.4); \node[below] at (0.4,0) {$DT_s$};
-    \draw[dashed] (1,0) -- (1,1.0); \node[below] at (1,0) {$T_s$};
-    \draw[dashed] (2,0) -- (2,1.7); \node[below] at (2,0) {$2T_s$};
+    \node[left] at (-0.1,0) {$i_L(0)=0$};
+    \draw[dashed] (0.4,0) -- (0.4,1.4); \node[below] at (0.4,-0.05) {$DT_s$};
+    \draw[dashed] (2,0) -- (2,1.7); \node[below] at (2,-0.05) {$2T_s$};
     \draw[dashed] (7,0) -- (7,3.05); \node[below] at (7,0) {$nT_s$};
     \draw[dashed] (8,0) -- (8,3.1); \node[below] at (8,0) {$(n{+}1)T_s$};
   \end{tikzpicture}
